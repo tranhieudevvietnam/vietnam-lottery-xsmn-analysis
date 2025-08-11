@@ -1,17 +1,60 @@
+# name: Update data
+
+# on:
+#   workflow_dispatch:    # ✅ Cho phép chạy thủ công
+#   push:                 # ✅ Chạy khi push commit mới
+#     branches:
+#       - main
+#   schedule:
+#     - cron: 35 11 * * * # 6:35 PM in Vietnam
+
+# jobs:
+#   update-data:
+#     runs-on: ubuntu-24.04
+#     permissions:         # ✅ Cho phép workflow push code
+#       contents: write
+#     steps:
+#       - name: checkout repo content
+#         uses: actions/checkout@v4
+
+#       - name: setup python
+#         uses: actions/setup-python@v5
+#         with:
+#           python-version: '3.13'
+#           cache: pip
+#           cache-dependency-path: requirements.txt
+
+#       - name: install python packages
+#         run: |
+#           pip install -r requirements.txt
+
+#       - name: fetch data
+#         run: python src/fetch.py
+
+#       - name: analyze data
+#         run: python src/analyze.py
+
+#       - name: get current date
+#         run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+#       - name: push changes
+#         uses: actions-x/commit@v6
+#         with:
+#           token: ${{ secrets.GITHUB_TOKEN }}
+#           message: Updated ${{ env.date }}
+#           email: action@github.com
+#           name: GitHub Action
+
+
 name: Update data
 
 on:
-  workflow_dispatch:    # ✅ Chạy thủ công
-    inputs:
-      date_input:
-        description: "Ngày cần lấy dữ liệu (2025-08-11)"
-        required: false
-        default: ""
+  workflow_dispatch:    # ✅ Cho phép chạy thủ công
   push:                 # ✅ Chạy khi push commit mới
     branches:
       - main
   schedule:
-    - cron: 35 11 * * * # 6:35 PM in Vietnam
+    - cron: 35 11 * * * # 6:35 PM ở Việt Nam
 
 jobs:
   update-data:
@@ -33,19 +76,15 @@ jobs:
         run: |
           pip install -r requirements.txt
 
+      # ✅ Truyền cố định ngày 2025-08-11
+      - name: set fixed date
+        run: echo "date=2025-08-11" >> $GITHUB_ENV
+
       - name: fetch data
-        run: python src/fetch.py ${{ github.event.inputs.date_input }}
+        run: python src/fetch.py ${{ env.date }}
 
       - name: analyze data
-        run: python src/analyze.py ${{ github.event.inputs.date_input }}
-
-      - name: get current date
-        run: |
-          if [ -n "${{ github.event.inputs.date_input }}" ]; then
-            echo "date=${{ github.event.inputs.date_input }}" >> $GITHUB_ENV
-          else
-            echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
-          fi
+        run: python src/analyze.py ${{ env.date }}
 
       - name: push changes
         uses: actions-x/commit@v6

@@ -30,8 +30,6 @@ jobs:
 
       - name: fetch data
         run: python src/fetch.py
-        # env:
-        #   FETCH_DATE: "2025-08-11"
 
       - name: analyze data
         run: python src/analyze.py

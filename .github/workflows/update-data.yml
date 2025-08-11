@@ -1,6 +1,10 @@
 name: Update data
 
 on:
+  workflow_dispatch:    # ✅ Cho phép chạy thủ công
+  push:                 # ✅ Chạy khi push commit mới
+    branches:
+      - main
   schedule:
     - cron: 35 11 * * * # 6:35 PM in Vietnam
 

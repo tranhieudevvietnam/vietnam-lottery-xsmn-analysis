@@ -4,7 +4,7 @@ on:
   workflow_dispatch:    # ✅ Chạy thủ công
     inputs:
       date_input:
-        description: "Ngày cần lấy dữ liệu (YYYY-MM-DD)"
+        description: "Ngày cần lấy dữ liệu (2025-08-11)"
         required: false
         default: ""
   push:                 # ✅ Chạy khi push commit mới

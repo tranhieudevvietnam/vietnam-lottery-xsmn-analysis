@@ -1,7 +1,12 @@
 name: Update data
 
 on:
-  workflow_dispatch:    # ✅ Cho phép chạy thủ công
+  workflow_dispatch:    # ✅ Chạy thủ công
+    inputs:
+      date_input:
+        description: "Ngày cần lấy dữ liệu (YYYY-MM-DD)"
+        required: false
+        default: ""
   push:                 # ✅ Chạy khi push commit mới
     branches:
       - main
@@ -11,7 +16,7 @@ on:
 jobs:
   update-data:
     runs-on: ubuntu-24.04
-    permissions:         # ✅ Cho phép workflow push code
+    permissions:
       contents: write
     steps:
       - name: checkout repo content
@@ -29,13 +34,18 @@ jobs:
           pip install -r requirements.txt
 
       - name: fetch data
-        run: python src/fetch.py
+        run: python src/fetch.py ${{ github.event.inputs.date_input }}
 
       - name: analyze data
-        run: python src/analyze.py
+        run: python src/analyze.py ${{ github.event.inputs.date_input }}
 
       - name: get current date
-        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+        run: |
+          if [ -n "${{ github.event.inputs.date_input }}" ]; then
+            echo "date=${{ github.event.inputs.date_input }}" >> $GITHUB_ENV
+          else
+            echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+          fi
 
       - name: push changes
         uses: actions-x/commit@v6

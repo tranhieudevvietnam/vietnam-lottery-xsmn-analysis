@@ -1,4 +1,4 @@
-# Vietnam Lottery (XSMB) Analysis
+# Vietnam Lottery (xsmn) Analysis
 
 Using GitHub Action to automatically fetch and analyze results of the Vietnam lottery daily.
 
@@ -16,9 +16,9 @@ Dự án này được tạo bởi [Khiêm Đoàn](https://github.com/khiemdoan)
 
 |          | CSV | JSON | Parquet |
 |----------|-----|------|---------|
-| Raw      | [xsmb.csv](https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmb-analysis/refs/heads/main/data/xsmb.csv) | [xsmb.json](https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmb-analysis/refs/heads/main/data/xsmb.json) | [xsmb.parquet](https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmb-analysis/refs/heads/main/data/xsmb.parquet) |
-| 2-digits | [xsmb-2-digits.csv](https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmb-analysis/refs/heads/main/data/xsmb-2-digits.csv) | [xsmb-2-digits.json](https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmb-analysis/refs/heads/main/data/xsmb-2-digits.json) | [xsmb-2-digits.parquet](https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmb-analysis/refs/heads/main/data/xsmb-2-digits.parquet) |
-| Sparse   | [xsmb-sparse.csv](https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmb-analysis/refs/heads/main/data/xsmb-sparse.csv) | [xsmb-sparse.json](https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmb-analysis/refs/heads/main/data/xsmb-sparse.json) | [xsmb-sparse.parquet](https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmb-analysis/refs/heads/main/data/xsmb-sparse.parquet) |
+| Raw      | [xsmn.csv](https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmn-analysis/refs/heads/main/data/xsmn.csv) | [xsmn.json](https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmn-analysis/refs/heads/main/data/xsmn.json) | [xsmn.parquet](https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmn-analysis/refs/heads/main/data/xsmn.parquet) |
+| 2-digits | [xsmn-2-digits.csv](https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmn-analysis/refs/heads/main/data/xsmn-2-digits.csv) | [xsmn-2-digits.json](https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmn-analysis/refs/heads/main/data/xsmn-2-digits.json) | [xsmn-2-digits.parquet](https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmn-analysis/refs/heads/main/data/xsmn-2-digits.parquet) |
+| Sparse   | [xsmn-sparse.csv](https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmn-analysis/refs/heads/main/data/xsmn-sparse.csv) | [xsmn-sparse.json](https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmn-analysis/refs/heads/main/data/xsmn-sparse.json) | [xsmn-sparse.parquet](https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmn-analysis/refs/heads/main/data/xsmn-sparse.parquet) |
 
 ## Using
 
@@ -27,17 +27,17 @@ You can use `curl` or `wget` to download data files. Or you can load them direct
 Bạn có thể sử dụng curl hoặc wget để tải các tệp dữ liệu. Hoặc bạn có thể tải chúng trực tiếp vào DataFrame:
 
 ```sh
-wget https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmb-analysis/refs/heads/main/data/xsmb.csv
+wget https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmn-analysis/refs/heads/main/data/xsmn.csv
 ```
 
 ```sh
-curl -O https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmb-analysis/refs/heads/main/data/xsmb-2-digits.csv
+curl -O https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmn-analysis/refs/heads/main/data/xsmn-2-digits.csv
 ```
 
 ```python
 import pandas as pd
 
-df = pd.read_csv('https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmb-analysis/refs/heads/main/data/xsmb-sparse.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/khiemdoan/vietnam-lottery-xsmn-analysis/refs/heads/main/data/xsmn-sparse.csv')
 df.info()
 ```
 

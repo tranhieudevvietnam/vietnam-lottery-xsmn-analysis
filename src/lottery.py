@@ -27,7 +27,7 @@ class Lottery:
         self._last_date = date.today()
 
     def load(self) -> None:
-        with open('data/xsmb.json', 'r', encoding='utf-8') as f:
+        with open('data/xsmn.json', 'r', encoding='utf-8') as f:
             data = ResultList.model_validate_json(f.read())
         for d in data.root:
             self._data[d.date] = d
@@ -40,12 +40,12 @@ class Lottery:
             df.to_json(f'data/{file_name}.json', orient='records', date_format='iso', indent=2, index=False)
             df.to_parquet(f'data/{file_name}.parquet', index=False)
 
-        _dump(self._raw_data, 'xsmb')
-        _dump(self._2_digits_data, 'xsmb-2-digits')
-        _dump(self._sparse_data, 'xsmb-sparse')
+        _dump(self._raw_data, 'xsmn')
+        _dump(self._2_digits_data, 'xsmn-2-digits')
+        _dump(self._sparse_data, 'xsmn-sparse')
 
     def fetch(self, selected_date: date) -> None:
-        url = f'https://xoso.com.vn/xsmb-{selected_date:%d-%m-%Y}.html'
+        url = f'https://xoso.com.vn/xsmn-{selected_date:%d-%m-%Y}.html'
         resp = self._http.get(url)
         if resp.status_code != 200:
             return
